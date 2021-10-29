@@ -45,16 +45,16 @@
 	<h1>Example to analyze data</h1>
 	<h2>1 Choose one color below</h2>
 	<div class='btns' id="btns">
-		<button type="button" name="color" value="0" style="background-color: orangered; color: white; font-size: 150%;">
+		<button type="button" name="color" value="0" style="background-color: orangered; color: white; font-size: 1.5em;">
 			Orange
 		</button>
-		<button type="button" name="color" value="1" style="background-color: green; color: white; font-size: 150%;">
+		<button type="button" name="color" value="1" style="background-color: green; color: white; font-size: 1.5em;">
 			Green
 		</button>
-		<button type="button" name="color" value="2" style="background-color: purple; color: white; font-size: 150%;">
+		<button type="button" name="color" value="2" style="background-color: purple; color: white; font-size: 1.5em;">
 			Purple
 		</button>
-		<button type="button" name="color" value="3" style="background-color: blue; color: white; font-size: 150%;">
+		<button type="button" name="color" value="3" style="background-color: blue; color: white; font-size: 1.5em;">
 			Blue
 		</button>
 	</div>
@@ -81,10 +81,10 @@
 	onplay="counter.send('played', this.currentTime);"
 	onloadeddata="counter.send('videoLoaded', Date.now() - timeStart);"></video>
 	<div>
-		<button type="button" name="videoControl" value="play" style="font-size: 150%;" 
+		<button type="button" name="videoControl" value="play" style="font-size: 1.5em;" 
 		onclick="document.getElementById('video').play();">Hell Yeah!
 		</button>
-		<button type="button" name="videoControl" value="pause" style="font-size: 150%;"
+		<button type="button" name="videoControl" value="pause" style="font-size: 1.5em;"
 		onclick="document.getElementById('video').pause();">Pls, NO MORE!</button>
 	</div>
 	<hr>
