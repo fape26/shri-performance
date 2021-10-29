@@ -39,11 +39,10 @@
 		counter.send('ttfb', performance.timing.responseEnd - performance.timing.requestStart);
 		
 		var timeStart = Date.now();
-
 	</script>
 
 	<h1>Example to analyze data</h1>
-	<h2>1 Choose one color below</h2>
+	<h2>Choose one color below</h2>
 	<div class='btns' id="btns">
 		<button type="button" name="color" value="0" style="background-color: orangered; color: white; font-size: 1.5em;">
 			Orange
@@ -75,7 +74,7 @@
 		}
 	</script>
 	<hr>
-	<h2>2 Play the video</h2>
+	<h2>Play the video</h2>
 	<video src="video.mp4" width="500" height="400" id="video" 
 	loop onpause="counter.send('paused', this.currentTime);" 
 	onplay="counter.send('played', this.currentTime);"
