@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Send metrics exampple</title>
+	<style type="text/css">
+		#btns button[aria-selected="true"]::after {
+			content: ' — ✔️';
+		}
+		#btns button:enabled {
+			cursor: pointer;
+		}
+		#btns button:disabled {
+			cursor: not-allowed;
+		}
+		body {
+			display: flex; 
+			flex-direction: column;
+			align-items: center;
+		}
+		h1 {text-align: center;}
+	</style>
+</head>
+<body>
+	<script src="send.js"></script>
+	<script>
+		let counter = new Counter();
+
+		let device = window.matchMedia('(max-width: 768px)').matches ? 'touch' : 'desktop';
+
+		counter.init('E66AC101-A7D2-48E4-A703-2D7260962B18', String(Math.random()).substr(2, 12), 'send test');
+		counter.setAdditionalParams({
+			env: 'production',
+			platform: device
+		});
+
+		counter.send('connect', performance.timing.connectEnd - performance.timing.connectStart);
+		counter.send('ttfb', performance.timing.responseEnd - performance.timing.requestStart);
+		
+		var timeStart = Date.now();
+
+	</script>
+
+	<h1>Example to analyze data</h1>
+	<h2>1 Choose one color below</h2>
+	<div class='btns' id="btns">
+		<button type="button" name="color" value="0" style="background-color: orangered; color: white; font-size: 150%;">
+			Orange
+		</button>
+		<button type="button" name="color" value="1" style="background-color: green; color: white; font-size: 150%;">
+			Green
+		</button>
+		<button type="button" name="color" value="2" style="background-color: purple; color: white; font-size: 150%;">
+			Purple
+		</button>
+		<button type="button" name="color" value="3" style="background-color: blue; color: white; font-size: 150%;">
+			Blue
+		</button>
+	</div>
+	<script>
+		let colors = document.getElementById('btns').children;
+		let quote = document.createElement('h1');
+		quote.innerHTML = 'Big mistake, junior';
+		for (const color of colors) {
+			color.addEventListener('click', function (e) {
+				console.log('color' + e.target.value);
+				counter.send('color', e.target.value);
+				e.target.setAttribute('aria-selected', 'true');
+				document.getElementById('btns').append(quote);
+				for (const colorBtn of colors) {
+					colorBtn.disabled = true;
+				}
+			});
+		}
+	</script>
+	<hr>
+	<h2>2 Play the video</h2>
+	<video src="video.mp4" width="500" height="400" id="video" 
+	loop onpause="counter.send('paused', this.currentTime);" 
+	onplay="counter.send('played', this.currentTime);"
+	onloadeddata="counter.send('videoLoaded', Date.now() - timeStart);"></video>
+	<div>
+		<button type="button" name="videoControl" value="play" style="font-size: 150%;" 
+		onclick="document.getElementById('video').play();">Hell Yeah!
+		</button>
+		<button type="button" name="videoControl" value="pause" style="font-size: 150%;"
+		onclick="document.getElementById('video').pause();">Pls, NO MORE!</button>
+	</div>
+	<hr>
+	<p><a href="stats.html">Check the stats</a></p>
+</body>
+</html>
