@@ -63,7 +63,6 @@
 		quote.innerHTML = 'Big mistake, junior';
 		for (const color of colors) {
 			color.addEventListener('click', function (e) {
-				console.log('color' + e.target.value);
 				counter.send('color', e.target.value);
 				e.target.setAttribute('aria-selected', 'true');
 				document.getElementById('btns').append(quote);
