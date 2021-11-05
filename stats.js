@@ -146,6 +146,6 @@ fetch('https://shri.yandex/hw/stat/data?counterId=E66AC101-A7D2-48E4-A703-2D7260
 		compareMetric(data, 'send test', 'videoLoaded', 'platform');
 		compareMetric(data, 'send test', 'played', 'platform');
 		showSession(data, 'send test', '330794325060', '2021-10-28')
-		showMetricByPeriod(data, 'send test', '2021-10-28', '2021-10-29')
+		showMetricByPeriod(data, 'send test', '2021-10-28', '2021-11-05')
 		// добавить свои сценарии, реализовать функции выше
 	});
